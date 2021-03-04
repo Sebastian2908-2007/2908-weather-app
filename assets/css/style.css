@@ -95,6 +95,7 @@ p{
   .min-100-vw {
     min-width: 100vw;
   }
+
   .flex-row {
     display: flex;
     flex-wrap: wrap;
@@ -109,3 +110,17 @@ p{
   .justify-space-between {
     justify-content: space-between;
   }
+  .col {
+    flex: 0 0 calc(100% * 8 / 12 - 2%);
+  }
+  
+
+  @media screen and (min-width: 768px){
+  .col-md-8 {
+    flex: 0 0 calc(100% * 8 / 12 - 2%);
+  }
+ 
+  .col-md-4 {
+    flex: 0 0 calc(100% * 4 / 12 - 2%);
+  }
+}
