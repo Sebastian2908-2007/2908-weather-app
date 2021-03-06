@@ -24,6 +24,8 @@
 
 
  inpBtn.addEventListener("click", function() {
+   var formrst = document.getElementById("user-form");
+   
      // daily weather api url per city
    event.preventDefault();
   fetch( "https://api.openweathermap.org/data/2.5/weather?q="+inputSearch.value+"&appid=c5c96daed38db003f5a5228c5b83c909&units=imperial")
@@ -38,10 +40,10 @@
       showName.innerHTML = nameCity;
       desc.innerHTML = descValue;
       temp.innerHTML = temperature;
-      
+      formrst.reset()
       })
     }else {
-      console.log("you can do this try again!");
+     window.alert("please enter a real city");
     }
 
   })
@@ -63,6 +65,8 @@ function createCityBtn () {
 }
 
 fveDayBtn.addEventListener("click", function () {
+  var formrst = document.getElementById("sec-form");
+   
   event.preventDefault();
   fetch("https://api.openweathermap.org/data/2.5/forecast?q="+fiveDaySearch.value+"&appid=c5c96daed38db003f5a5228c5b83c909&units=imperial")
   .then(function(response) {
@@ -82,7 +86,7 @@ fveDayBtn.addEventListener("click", function () {
           fveDayWeather2.innerHTML = fiveDayDis2;
           fveDayWeather3.innerHTML = fiveDayDis3;
           fveDayWeather4.innerHTML = fiveDayDis4;
-
+          formrst.reset()
       })
     }
 
