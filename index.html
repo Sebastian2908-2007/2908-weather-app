@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
- <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/style.css"> 
 </head>
 <body class="flex-column min-100-vh">
     <header class="hero">
@@ -17,14 +17,12 @@
  <div class="card">
    <h3 class="card-header text-uppercase">search a city</h3>
    <form id="user-form" class="card-body">
-   <input class="inputValue" name="city" id="city-search"autofocus="true"><button type="submit" class="inpBtn"></button>
+   <input class="inputValue" name="city" id="city-search"autofocus="true"><button type="submit" class="inpBtn btn btn-info">SEARCH</button>
    </form>
  </div>
  <div class="card">
      <h3 class="card-header text-uppercase">Common Cities</h3>
  <div class="card-body gen" id="cmn-cities-btns">
-     <button class="btn" data-city="austin">Austin</button>
-  
   </div>
  </div>
 </div>
@@ -38,9 +36,15 @@
 </div>
 <div class="col-12 col-md-8 display ">
     <div id="five-day-display" class="list-group">
-    <h2 class="subtitle">Five Day forecast</h2>
-    <p class="desc2"></p>
-    <p class="temp2"></p>
+    <h2 class="subtitle">Five Day forecast:<span class="input-value-fd"></span> <button class=" fveDay btn-primary" type="submit">SEARCH</button></h2>
+    <form id="user-form" class="card-body">
+    <input class="inputFiveDay" name="city" id="city-search"autofocus="true">
+  </form>
+    <p class="one"></p>
+    <p class="two"></p>
+    <p class="three"></p>
+    <p class="four"></p>
+    <p class="five"></p>
   </div>
 </div>
 

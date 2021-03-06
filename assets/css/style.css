@@ -30,7 +30,7 @@ main {
 p{
     font-size: 1.2rem;
 }
-.btn {
+/*.btn {
     font-size: 1.3rem;
     text-decoration:none;
     padding: 6px 5px;
@@ -44,7 +44,7 @@ p{
     background-color: var(--light-dark);
     box-shadow: 3px 3px var(--dark);
     transform: translate(-1px, -1px);
-}
+}*/
 
 .hero {
    padding: 3% 4%;
