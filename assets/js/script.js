@@ -8,6 +8,7 @@
  var fveDayWeather2 = document.querySelector(".three")
  var fveDayWeather3 = document.querySelector(".four")
  var fveDayWeather4 = document.querySelector(".five")
+ var savedBtns = document.getElementById("#svdBtn");
 
 
 
@@ -19,20 +20,54 @@
  var locale= [];
 
 
- function loading() {
+ /*function loading() {
+  
   var container = document.querySelector(".gen");
   var btnGen = document.createElement("button");
  var history = localStorage.getItem("history");
  history = JSON.parse(history)
- console.log(history)
- for (var i = 0; i < history.length; i++ ) {
-  // console.log(history[i]);
+ for ( i = 0; i < history.length; i++ ) {
+   console.log(history);
   btnGen.innerHTML = history[i];
   container.appendChild(btnGen);
  }
  
 }
-loading();
+loading();*/
+// new load function that prints whole array of saved inputs upon loading
+function loading() {
+  
+
+ var history = localStorage.getItem("history");
+ history = JSON.parse(history)
+ for (i=0; i< history.length; i++ ) { prntBtn();
+   function prntBtn () { 
+  var container = document.querySelector(".gen");
+  var btnGen = document.createElement("button");
+  btnGen.setAttribute("id", "svdBtn");
+  btnGen.className = "btn btn-light"
+  btnGen.textContent = history[i];
+  container.appendChild(btnGen);
+   } 
+
+ 
+}
+/*savedBtns.addEventListener("click", function  () { 
+  fetch( "https://api.openweathermap.org/data/2.5/weather?q="+savedBtns.textContent+"&appid=c5c96daed38db003f5a5228c5b83c909&units=imperial")
+  .then(function(response) {
+    if (response.ok) {
+      response.json().then(function(data) {
+        console.log(data);
+      })
+    }
+  })
+
+})*/
+
+}
+
+
+
 
 
  inpBtn.addEventListener("click", function() {
@@ -52,7 +87,7 @@ loading();
       showName.innerHTML = nameCity;
       desc.innerHTML = descValue;
       temp.innerHTML = temperature;
-      formrst.reset()
+      formrst.reset();
       })
     }else {
      window.alert("please enter a real city");
@@ -105,4 +140,6 @@ fveDayBtn.addEventListener("click", function () {
 
   })
 })
+loading();
+
 
