@@ -17,10 +17,22 @@
  var desc = document.querySelector(".desc") 
  var temp = document.querySelector(".temp") 
  var locale= [];
+
+
  function loading() {
-  JSON.parse(localStorage.getItem("history"))
-  loading();
+  var container = document.querySelector(".gen");
+  var btnGen = document.createElement("button");
+ var history = localStorage.getItem("history");
+ history = JSON.parse(history)
+ console.log(history)
+ for (var i = 0; i < history.length; i++ ) {
+  // console.log(history[i]);
+  btnGen.innerHTML = history[i];
+  container.appendChild(btnGen);
+ }
+ 
 }
+loading();
 
 
  inpBtn.addEventListener("click", function() {
@@ -52,8 +64,9 @@
 function localeStorage () {
 let save = inputSearch.value;
 locale.push(save)
-console.log(locale);
 localStorage.setItem("history", JSON.stringify(locale));
+//console.log(locale);
+
 }
 
 function createCityBtn () {
@@ -72,7 +85,7 @@ fveDayBtn.addEventListener("click", function () {
   .then(function(response) {
     if (response.ok) {
       response.json().then(function(data) {
-          console.log(data);
+          //console.log(data);
           var cityName = data.city.name;
           var fiveDayDis = data.list[0].main.temp;
           var fiveDayDis1 = data.list[1].main.temp;
