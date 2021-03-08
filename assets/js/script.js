@@ -26,7 +26,7 @@ function loading() {
   var container = document.querySelector(".gen");
   var btnGen = document.createElement("button");
   btnGen.setAttribute("id", "submit");
-  btnGen.className = "btn btn-light"
+  btnGen.className = "btnO btn btn-light"
   btnGen.textContent = history[i];
   container.appendChild(btnGen);
    } 
@@ -81,14 +81,14 @@ function createCityBtn () {
   var container = document.querySelector(".gen");
   var btnGen = document.createElement("button");
   btnGen.innerHTML = inputSearch.value;
-  btnGen.className = "btn"
+  btnGen.className = "btnO btn btn-light"
   container.appendChild(btnGen);
 }
 // five day search logic
 fveDayBtn.addEventListener("click", function () {
   var formrst = document.getElementById("sec-form");
    
-  Event.preventDefault();
+  event.preventDefault();
   fetch("https://api.openweathermap.org/data/2.5/forecast?q="+fiveDaySearch.value+"&appid=c5c96daed38db003f5a5228c5b83c909&units=imperial")
   .then(function(response) {
     if (response.ok) {
@@ -117,29 +117,24 @@ loading();
 
 
 
-/* savedBtns.addEventListener("click",function () { 
 
-  fetch("https://api.openweathermap.org/data/2.5/weather?q="+savedBtns.innerHTML+"&appid=c5c96daed38db003f5a5228c5b83c909&units=imperial")
-  .then(function(response) {
-    if (response.ok) {
-      response.json().then(function(data) {
-        console.log(data);
-      })
-    }else {console.log("sorry try again");}
-  })
-
-
-})*/
 var oldSearchData = function (event) {
   event.preventDefault();
  //console.log(event.target);
-  if (event.target.matches(".btn")) {
+  if (event.target.matches(".btnO")) {
     //console.log("yup")
     fetch("https://api.openweathermap.org/data/2.5/weather?q="+event.target.innerHTML+"&appid=c5c96daed38db003f5a5228c5b83c909&units=imperial")
     .then(function(response) {
       if (response.ok) {
         response.json().then(function(data) {
-          console.log(data);
+         // console.log(data);
+         var temperature = data.main.temp;
+       var descValue =  data.weather[0].description;
+       var nameCity = data.name;
+       showName.innerHTML = nameCity;
+       desc.innerHTML = descValue;
+       temp.innerHTML = temperature;
+
         })
       }
     })
