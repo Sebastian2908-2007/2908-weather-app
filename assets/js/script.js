@@ -8,32 +8,13 @@
  var fveDayWeather2 = document.querySelector(".three")
  var fveDayWeather3 = document.querySelector(".four")
  var fveDayWeather4 = document.querySelector(".five")
- var savedBtns = document.getElementById("#svdBtn");
-
-
-
-
-
+ var savedBtns = document.querySelector(".new");
  var showName = document.querySelector(".input-value-nm") 
  var desc = document.querySelector(".desc") 
  var temp = document.querySelector(".temp") 
  var locale= [];
 
 
- /*function loading() {
-  
-  var container = document.querySelector(".gen");
-  var btnGen = document.createElement("button");
- var history = localStorage.getItem("history");
- history = JSON.parse(history)
- for ( i = 0; i < history.length; i++ ) {
-   console.log(history);
-  btnGen.innerHTML = history[i];
-  container.appendChild(btnGen);
- }
- 
-}
-loading();*/
 // new load function that prints whole array of saved inputs upon loading
 function loading() {
   
@@ -44,7 +25,7 @@ function loading() {
    function prntBtn () { 
   var container = document.querySelector(".gen");
   var btnGen = document.createElement("button");
-  btnGen.setAttribute("id", "svdBtn");
+  btnGen.setAttribute("id", "submit");
   btnGen.className = "btn btn-light"
   btnGen.textContent = history[i];
   container.appendChild(btnGen);
@@ -52,19 +33,10 @@ function loading() {
 
  
 }
-/*savedBtns.addEventListener("click", function  () { 
-  fetch( "https://api.openweathermap.org/data/2.5/weather?q="+savedBtns.textContent+"&appid=c5c96daed38db003f5a5228c5b83c909&units=imperial")
-  .then(function(response) {
-    if (response.ok) {
-      response.json().then(function(data) {
-        console.log(data);
-      })
-    }
-  })
-
-})*/
+  
 
 }
+
 
 
 
@@ -96,6 +68,7 @@ function loading() {
   })
 
 })
+// local storage logic
 function localeStorage () {
 let save = inputSearch.value;
 locale.push(save)
@@ -103,7 +76,7 @@ localStorage.setItem("history", JSON.stringify(locale));
 //console.log(locale);
 
 }
-
+// creates button every search
 function createCityBtn () {
   var container = document.querySelector(".gen");
   var btnGen = document.createElement("button");
@@ -111,11 +84,11 @@ function createCityBtn () {
   btnGen.className = "btn"
   container.appendChild(btnGen);
 }
-
+// five day search logic
 fveDayBtn.addEventListener("click", function () {
   var formrst = document.getElementById("sec-form");
    
-  event.preventDefault();
+  Event.preventDefault();
   fetch("https://api.openweathermap.org/data/2.5/forecast?q="+fiveDaySearch.value+"&appid=c5c96daed38db003f5a5228c5b83c909&units=imperial")
   .then(function(response) {
     if (response.ok) {
@@ -141,5 +114,43 @@ fveDayBtn.addEventListener("click", function () {
   })
 })
 loading();
+
+
+
+/* savedBtns.addEventListener("click",function () { 
+
+  fetch("https://api.openweathermap.org/data/2.5/weather?q="+savedBtns.innerHTML+"&appid=c5c96daed38db003f5a5228c5b83c909&units=imperial")
+  .then(function(response) {
+    if (response.ok) {
+      response.json().then(function(data) {
+        console.log(data);
+      })
+    }else {console.log("sorry try again");}
+  })
+
+
+})*/
+var oldSearchData = function (event) {
+  event.preventDefault();
+ //console.log(event.target);
+  if (event.target.matches(".btn")) {
+    //console.log("yup")
+    fetch("https://api.openweathermap.org/data/2.5/weather?q="+event.target.innerHTML+"&appid=c5c96daed38db003f5a5228c5b83c909&units=imperial")
+    .then(function(response) {
+      if (response.ok) {
+        response.json().then(function(data) {
+          console.log(data);
+        })
+      }
+    })
+  }
+}
+
+savedBtns.addEventListener("click", oldSearchData);
+
+
+
+
+
 
 
